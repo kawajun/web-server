@@ -15,9 +15,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.post('/api/v1/quiz', function (req, res) {
     const answer = req.body.answer
     if(answer === "2" ){
-        res.send("正解");
+        res.redirect("/correct.html");
     } else {
-        res.send("不正解");
+        res.redirect("/wrong.html");
     }
     res.send(answer);
 });
@@ -26,6 +26,8 @@ app.get('/about', function (req, res) {
     res.send('aboutページ');
 });
   
-app.listen(3000, function(){
+const PORT = process.env.PORT || 3000
+
+app.listen(PORT, function(){
     console.log("I am running!");
 });
